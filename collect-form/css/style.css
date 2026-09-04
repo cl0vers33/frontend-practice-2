@@ -1,0 +1,203 @@
+/* ===== 第一行：工程默认配置，让宽度包含 padding 和 border ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+  color: #333;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 8px;
+}
+
+header h1 {
+  font-size: 26px;
+  margin-bottom: 4px;
+}
+
+nav {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+/* 后代选择器：nav 里的所有链接 */
+nav a {
+  color: #0d6efd;
+  text-decoration: none;
+  margin: 0 8px;
+}
+
+/* hover 时变色加下划线，提升体验 */
+nav a:hover {
+  text-decoration: underline;
+}
+
+section {
+  background: #fff;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+/* ===== 表单控件基础样式 ===== */
+input, textarea, select, button {
+  font-size: 16px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-family: inherit;
+}
+
+/* 让每个 p 里的 label 与控件分两行，更整齐 */
+form p {
+  margin: 8px 0;
+}
+
+label {
+  display: inline-block;
+  margin-right: 8px;
+}
+
+/* 必填项星号样式 */
+.req {
+  color: #dc3545;
+}
+
+/* ===== 研究任务1：纯 CSS 表单状态反馈 =====
+   不写任何 JavaScript，靠 :valid / :invalid / :focus 伪类
+   和属性选择器实现"必填项未填红框、聚焦时高亮" */
+
+/* 聚焦时高亮：青色边框 + 浅青背景 */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #0d6efd;
+  background-color: #eaf2ff;
+  box-shadow: 0 0 0 3px rgba(13, 110, 253, 0.15);
+}
+
+/* 必填且合法：绿色边框表示"填对了" */
+input:required:valid, textarea:required:valid {
+  border-color: #28a745;
+  background-color: #f4fff6;
+}
+
+/* 必填但非法（空或格式错）：红色边框提示
+   注意：:invalid 在未交互时也会触发，故加 :focus 限制为聚焦时才显红框，
+   避免页面打开就一片红，体验更好 */
+input:required:focus:invalid, textarea:required:focus:invalid {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+/* 属性选择器：带 pattern 的控件单独提示 */
+input[pattern]:focus:invalid {
+  border-color: #dc3545;
+  background-color: #fff5f5;
+}
+
+/* ===== 研究任务2：fieldset/legend 分组样式 ===== */
+fieldset {
+  border: 1px dashed #adb5bd;
+  border-radius: 8px;
+  padding: 12px 16px;
+  margin-bottom: 16px;
+}
+
+legend {
+  font-weight: bold;
+  color: #0d6efd;
+  padding: 0 8px;
+}
+
+/* ===== 研究任务3：details/summary 折叠区块样式 ===== */
+details {
+  background: #f8f9fa;
+  border-left: 3px solid #0d6efd;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin-top: 12px;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+  user-select: none;
+}
+
+summary:hover {
+  color: #0d6efd;
+}
+
+/* ===== 按钮样式 ===== */
+button {
+  background: #0d6efd;
+  color: #fff;
+  border: none;
+  padding: 8px 24px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+button:hover {
+  background: #0b5ed7;
+}
+
+button[type="reset"] {
+  background: #6c757d;
+  margin-left: 8px;
+}
+
+button[type="reset"]:hover {
+  background: #5a6268;
+}
+
+/* inline-block 让链接式控件可设宽度（第四部分第七节延伸） */
+nav a {
+  display: inline-block;
+  padding: 4px 0;
+}
+
+/* ===== 表格样式（附录练习） ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+}
+
+caption {
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #555;
+}
+
+th, td {
+  border: 1px solid #dee2e6;
+  padding: 8px;
+  text-align: center;
+}
+
+/* 后代选择器：表头单元格加粗、深色背景 */
+thead th {
+  background: #e9ecef;
+  font-weight: bold;
+}
+
+tbody tr:nth-child(even) {
+  background: #f8f9fa;
+}
+
+footer {
+  text-align: center;
+  color: #888;
+  font-size: 14px;
+  padding: 16px 0;
+}
