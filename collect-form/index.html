@@ -22,18 +22,173 @@
     <section id="intro">
       <h2>使用说明</h2>
       <p>本页面用于记录个人购物车中的物品，便于比价、备忘和控制消费。每提交一次生成一条物品记录，下方"已记录物品"表格中可查看全部条目。把想买的东西先记下来，冷静几天再决定是否下单。</p>
+
+      <!-- 研究任务3：details/summary 折叠区块 -->
+      <details>
+        <summary>填写说明（点击展开）</summary>
+        <p>1. 带 <span class="req">*</span> 为必填项。</p>
+        <p>2. 物品名称用于检索，请写清楚（如"无线鼠标"而非"鼠标"）。</p>
+        <p>3. 单价与数量会自动算出小计，供你判断总花费。</p>
+        <p>4. 优先级用于排序，"必买"会排在表格前面。</p>
+        <p>5. 提交后页面会跳转刷新，属正常现象。</p>
+      </details>
     </section>
 
     <!-- 添加物品表单区 -->
     <section id="add">
       <h2>添加物品</h2>
-      <p>（表单下一步填在这里）</p>
+      <form action="#" method="get">
+        <!-- 研究任务2：fieldset/legend 表单分组 -->
+        <fieldset>
+          <legend>物品信息</legend>
+
+          <p>
+            <label for="name">物品名称 <span class="req">*</span></label>
+            <input type="text" id="name" name="name" placeholder="如：无线机械键盘"
+                   pattern="[\u4e00-\u9fa5A-Za-z0-9]{2,30}" required>
+          </p>
+
+          <p>
+            <label for="brand">品牌/规格</label>
+            <input type="text" id="brand" name="brand" placeholder="如：罗技 K860"
+                   maxlength="40">
+          </p>
+
+          <p>
+            <label for="cat">物品类别</label>
+            <select id="cat" name="cat">
+              <option value="">请选择</option>
+              <option value="digital">数码电器</option>
+              <option value="book">图书文具</option>
+              <option value="clothing">服饰鞋包</option>
+              <option value="food">食品饮料</option>
+              <option value="home">家居日用</option>
+              <option value="other">其他</option>
+            </select>
+          </p>
+
+          <p>
+            <label for="price">单价（元）</label>
+            <input type="number" id="price" name="price" min="0" step="0.01"
+                   placeholder="0.00" value="0">
+          </p>
+
+          <p>
+            <label for="qty">数量</label>
+            <input type="number" id="qty" name="qty" min="1" max="999" value="1">
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>购买安排</legend>
+
+          <p>
+            <label for="buydate">计划购买日期</label>
+            <input type="date" id="buydate" name="buydate">
+          </p>
+
+          <p>
+            <label for="channel">购买渠道</label>
+            <select id="channel" name="channel">
+              <option value="">请选择</option>
+              <option value="jd">京东</option>
+              <option value="tb">淘宝</option>
+              <option value="pdd">拼多多</option>
+              <option value="offline">线下门店</option>
+              <option value="other">其他</option>
+            </select>
+          </p>
+
+          <p>优先级</p>
+          <p>
+            <label><input type="radio" name="priority" value="must"> 必买</label>
+            <label><input type="radio" name="priority" value="want" checked> 想买</label>
+            <label><input type="radio" name="priority" value="maybe"> 观望</label>
+          </p>
+
+          <p>购物标签（可多选）</p>
+          <p>
+            <label><input type="checkbox" name="tag" value="discount"> 打折促销</label>
+            <label><input type="checkbox" name="tag" value="gift"> 送礼用</label>
+            <label><input type="checkbox" name="tag" value="restock"> 补货</label>
+            <label><input type="checkbox" name="tag" value="impulse"> 冲动消费</label>
+          </p>
+        </fieldset>
+
+        <fieldset>
+          <legend>附加信息</legend>
+
+          <p>是否已下单</p>
+          <p>
+            <label><input type="radio" name="ordered" value="yes"> 已下单</label>
+            <label><input type="radio" name="ordered" value="no" checked> 未下单</label>
+          </p>
+
+          <p>
+            <label for="shot">上传商品截图</label>
+            <input type="file" id="shot" name="shot" accept="image/*">
+          </p>
+
+          <p>
+            <label for="advice">备注</label><br>
+            <textarea id="advice" name="advice" rows="4" maxlength="200"
+                      placeholder="比价链接、规格说明、犹豫原因等（不超过 200 字）"></textarea>
+          </p>
+        </fieldset>
+
+        <p>
+          <button type="submit">提交记录</button>
+          <button type="reset">重置</button>
+        </p>
+      </form>
     </section>
 
-    <!-- 已记录物品区 -->
+    <!-- 附录练习：已记录物品表格 -->
     <section id="list">
       <h2>已记录物品</h2>
-      <p>（表格下一步填在这里）</p>
+      <table>
+        <caption>本月购物车记录（示例数据）</caption>
+        <thead>
+          <tr>
+            <th>序号</th>
+            <th>物品名称</th>
+            <th>类别</th>
+            <th>单价</th>
+            <th>数量</th>
+            <th>优先级</th>
+            <th>状态</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>无线机械键盘</td>
+            <td>数码电器</td>
+            <td>¥399.00</td>
+            <td>1</td>
+            <td>想买</td>
+            <td>未下单</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>垃圾袋</td>
+            <td>家居日用</td>
+            <td>¥20.00</td>
+            <td>2</td>
+            <td>必买</td>
+            <td>已下单</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>运动水杯</td>
+            <td>家居日用</td>
+            <td>¥29.90</td>
+            <td>1</td>
+            <td>观望</td>
+            <td>未下单</td>
+          </tr>
+        </tbody>
+      </table>
     </section>
   </main>
 
